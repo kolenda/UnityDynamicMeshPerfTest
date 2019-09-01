@@ -44,17 +44,23 @@ public class DMObject : MonoBehaviour
 			indicesList[i * 3 + 1] = (i + 1) % trianglesNum;
 			indicesList[i * 3 + 2] = (i + 2) % trianglesNum;
 		}
-	}
 
+		UpdateMesh();
+	}
 
 	// Update is called once per frame
 	void Update()
-    {
+	{
+		UpdateMesh();
+	}
+
+	void UpdateMesh()
+	{
 		mesh.Clear();
 		mesh.SetVertices( verticesList );
 		mesh.SetUVs( 0, verticesList );
 		mesh.SetColors( colorsList );
 		mesh.SetNormals( normalsList );
 		mesh.SetIndices( indicesList, MeshTopology.Triangles, 0 );
-    }
+	}
 }

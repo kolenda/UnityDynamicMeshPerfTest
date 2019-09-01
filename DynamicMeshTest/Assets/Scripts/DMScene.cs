@@ -26,4 +26,11 @@ public class DMScene : MonoBehaviour
 			go.transform.localScale /= (Mathf.Sqrt( objectsNum ) / 3.0f);
 		}
     }
+
+	void Update()
+	{
+		if( Input.GetKeyDown( KeyCode.Escape ) ) {
+			UnityEngine.SceneManagement.SceneManager.LoadScene( "Menu" );
+		}
+	}
 }
