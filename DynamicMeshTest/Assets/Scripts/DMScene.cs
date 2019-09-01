@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class DMScene : MonoBehaviour
 {
-	public int objectsNum = 1;
-	public int trianglesNum = 1;
+	public int objectsNum = ApplicationModel.ObjectsNum;
+	public int trianglesNum = ApplicationModel.TriangleNum;
 
 	public GameObject	objectPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
+		objectsNum = ApplicationModel.ObjectsNum;
+		trianglesNum = ApplicationModel.TriangleNum;
+
 		Debug.LogWarning( "DMScene::Start(): objectsNum: " + objectsNum + ", trianglesNum: " + trianglesNum );
 
+		int lineSize = (int) Mathf.Sqrt( objectsNum );
+		float scale = 5.0f / lineSize;
+		Vector3 center = new Vector3( lineSize / 2, lineSize / 2, 0.0f ) * scale;
 		for( int i = 0; i < objectsNum; i++ ) {
-			Vector3 pos = new Vector3( i % 5, i / 5, 0.0f );
-			GameObject go = Instantiate( objectPrefab, pos, Quaternion.identity );
-
-			DMObject dmObject = go.GetComponent<DMObject>();
-			if( dmObject != null ) {
-				dmObject.trianglesNum = trianglesNum;
-			}
+			Vector3 pos = new Vector3( i % lineSize, i / lineSize, 0.0f ) * scale;
+			GameObject go = Instantiate( objectPrefab, pos - center, Quaternion.identity );
+			go.transform.localScale /= (Mathf.Sqrt( objectsNum ) / 3.0f);
 		}
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
