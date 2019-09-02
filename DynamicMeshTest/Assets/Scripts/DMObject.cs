@@ -23,14 +23,34 @@ public class DMObject : MonoBehaviour
 
 		indicesList = new int[trianglesNum * 3];
 
+		UpdateData();
+		UpdateMesh();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if( ApplicationModel.UpdateGeometryData )
+			UpdateData();
+
+		UpdateMesh();
+	}
+
+	void UpdateData()
+	{
+		verticesList.Clear();
+		normalsList.Clear();
+		colorsList.Clear();
+
 		verticesList.Add( new Vector3( 0.0f, 0.0f, 0.0f ) );
 		normalsList.Add( new Vector3( 0.0f, 0.0f, 1.0f ) );
 		colorsList.Add( new Color( 1.0f, 1.0f, 1.0f, 1.0f ) );
+
 		for( int i = 0; i < trianglesNum; i++ ) {
-			float angle = (float)i / trianglesNum * 2.0f;
-			verticesList.Add( new Vector3( Mathf.Sin(angle), Mathf.Cos( angle ), 0.0f ) );
-			normalsList.Add( new Vector3( Mathf.Sin(angle), Mathf.Cos( angle ), -1.0f ).normalized );
-			
+			float angle = (float) i / trianglesNum * 2.0f;
+			verticesList.Add( new Vector3( Mathf.Sin( angle ), Mathf.Cos( angle ), 0.0f ) );
+			normalsList.Add( new Vector3( Mathf.Sin( angle ), Mathf.Cos( angle ), -1.0f ).normalized );
+
 			colorsList.Add( new Color(
 				Mathf.Abs( Mathf.Sin( angle ) ),
 				Mathf.Abs( Mathf.Cos( angle ) ),
@@ -44,14 +64,6 @@ public class DMObject : MonoBehaviour
 			indicesList[i * 3 + 1] = (i + 1) % trianglesNum;
 			indicesList[i * 3 + 2] = (i + 2) % trianglesNum;
 		}
-
-		UpdateMesh();
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		UpdateMesh();
 	}
 
 	void UpdateMesh()

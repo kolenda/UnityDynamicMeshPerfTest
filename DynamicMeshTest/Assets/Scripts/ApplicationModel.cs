@@ -17,4 +17,11 @@ public class ApplicationModel
 		get { return triangleNum; }
 		set { triangleNum = value; }
 	}
+
+	static bool updateGeometryData = false;
+	public static bool UpdateGeometryData
+	{
+		get { return updateGeometryData; }
+		set { updateGeometryData = value; }
+	}
 }

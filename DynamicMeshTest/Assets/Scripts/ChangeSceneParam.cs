@@ -14,4 +14,9 @@ public class ChangeSceneParam : MonoBehaviour
 		ApplicationModel.TriangleNum = num;
 		Debug.Log( "ChangeSceneParam.setTriangleNum: " + num );
 	}
+	public void setUpdateData( bool val )
+	{
+		ApplicationModel.UpdateGeometryData = val;
+		Debug.Log( "ChangeSceneParam.setUpdateData: " + val );
+	}
 }
