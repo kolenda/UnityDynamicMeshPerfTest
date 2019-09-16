@@ -47,7 +47,7 @@ public class DMObject : MonoBehaviour
 		colorsList.Add( new Color( 1.0f, 1.0f, 1.0f, 1.0f ) );
 
 		for( int i = 0; i < trianglesNum; i++ ) {
-			float angle = (float) i / trianglesNum * 2.0f;
+			float angle = (float) i / trianglesNum * 2.0f + Time.time;
 			verticesList.Add( new Vector3( Mathf.Sin( angle ), Mathf.Cos( angle ), 0.0f ) );
 			normalsList.Add( new Vector3( Mathf.Sin( angle ), Mathf.Cos( angle ), -1.0f ).normalized );
 
